@@ -3,24 +3,23 @@ layout: default
 title: XhochY
 ---
 
-<div id="home">
+<div class="page-header">
   <h1>Blog Posts</h1>
-  <ul class="posts">
-    {% for post in site.categories.en %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
-
-  <h1>Open Source Projects</h1>
-  <ul class="posts">
-    <li>
-      <a href="http://github.com/xhochy/scrobbler/tree/scrobbler-ng/">Scrobbler-NG</a>
-      Ruby gem for accessing the Last.fm/Audioscrobbler API (2.0) with highspeed.
-    </li>
-    <li>
-      <a href="http://github.com/xhochy/lastfm-nations/">Last.fm Nationality Statistics</a>
-      Simple web app to determine where your favorite TOP 50 artists are coming from.
-    </li>
-  </ul>
 </div>
-  
+<ul class="posts">
+  {% for post in site.categories.en %}
+  <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
+
+<div class="page-header">
+  <h1>Open Source Projects</h1>
+</div>
+<dl>
+  <dt><a href="http://github.com/xhochy/scrobbler/">scrobbler-ng</a></dt>
+  <dd>Ruby gem for accessing the Last.fm/Audioscrobbler API (2.0) with highspeed.</dd>
+  <dt><a href="http://github.com/xhochy/songride/">Songride (Last.fm Nationality Statistics)</a></dt>
+  <dd>Simple web app to determine where your favorite artists are coming from.</dd>
+  <dt><a href="https://github.com/HaDiNet/ldapom">ldapom</a></dt>
+  <dd>A simple ldap object mapper for python.</dd>
+</dl>
