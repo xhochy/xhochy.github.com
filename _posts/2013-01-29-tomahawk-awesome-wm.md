@@ -10,7 +10,7 @@ awesome already can handle global keybindings adding these lines to your `.confi
 will transmit the actions of the media keys to Tomahawk (they will work with every
 MPRIS2-compatible media, you just need to replace "tomahawk" with the matching name).
 
-***Note:*** This code should be inserted before(!) `root.keys(globalkeys)`. 
+***Note:*** This code should be inserted before(!) `root.keys(globalkeys)`.
 
-<script src="https://gist.github.com/4665216.js"></script>
+<script src="https://gist.github.com/4665216.js">/* comment */</script>
 
