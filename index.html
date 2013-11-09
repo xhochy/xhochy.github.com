@@ -4,28 +4,30 @@ title: XhochY
 ---
 
 <div class="page-header">
-  <h1>Blog Posts</h1>
+    <h1>Blog Posts</h1>
 </div>
 <ul class="posts">
-  {% for post in site.posts %}
-  <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
+    {% for post in site.posts %}
+    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
 </ul>
 
 <div class="page-header">
-  <h1>Open Source Projects</h1>
+    <h1>Open Source Projects</h1>
 </div>
 <dl>
-  <dt><a href="http://github.com/xhochy/scrobbler/">scrobbler-ng</a></dt>
-  <dd>Ruby gem for accessing the Last.fm/Audioscrobbler API (2.0) with highspeed.</dd>
-  <dt><a href="http://github.com/xhochy/songride/">Songride (Last.fm Nationality Statistics)</a></dt>
-  <dd>Simple web app to determine where your favorite artists are coming from.</dd>
-  <dt><a href="https://github.com/HaDiNet/ldapom">ldapom</a></dt>
-  <dd>A simple ldap object mapper for python.</dd>
-  <dt><a href="https://github.com/xhochy/node-ktoblzcheck">node-ktoblzcheck</a></dt>
-  <dd>Node.JS wrapper for the ktoblzcheck library.</dd>
-  <dt><a href="https://github.com/xhochy/gentoo-overlay">gentoo-overlay</a></dt>
-  <dd>Gentoo Overlay for my own ebuilds and/or ebuilds that are not available in more "common" overlays.</dd>
+    <dt><a href="http://www.tomahawk-player.org/">Tomahawk Player</a></dt>
+    <dd>Tomahawk decouples the name of the song from the source it was shared from - and fulfills the request using all of your available sources.</dd>
+    <dt><a href="http://github.com/xhochy/scrobbler/">scrobbler-ng</a></dt>
+    <dd>Ruby gem for accessing the Last.fm/Audioscrobbler API (2.0) with highspeed.</dd>
+    <dt><a href="http://github.com/xhochy/songride/">Songride (Last.fm Nationality Statistics)</a></dt>
+    <dd>Simple web app to determine where your favorite artists are coming from.</dd>
+    <dt><a href="https://github.com/HaDiNet/ldapom">ldapom</a></dt>
+    <dd>A simple ldap object mapper for python.</dd>
+    <dt><a href="https://github.com/xhochy/node-ktoblzcheck">node-ktoblzcheck</a></dt>
+    <dd>Node.JS wrapper for the ktoblzcheck library.</dd>
+    <dt><a href="https://github.com/xhochy/gentoo-overlay">gentoo-overlay</a></dt>
+    <dd>Gentoo Overlay for my own ebuilds and/or ebuilds that are not available in more "common" overlays.</dd>
 </dl>
 
 <!--
