@@ -3,62 +3,90 @@ layout: default
 title: XhochY
 ---
 
-<div class="page-header">
-    <h1>Blog Posts</h1>
+<div id="intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-lg-offset-1">
+                <h5>ABOUT</h5>
+            </div>
+            <div class="col-lg-6">
+                I'm a (final year) computer science student with strong interest in data science.
+                Currently I'm studying at the University of Bristol in the MSc program <em>"Advanced Computing - Data Mining, High Performance Computing and Machine Learning"</em>
+                Asides my studies, I devote some time to open source projects like Tomahawk Player and spend occasionally a weekend building hacks around music.
+            </div>
+        </div>
+    </div>
 </div>
-<ul class="posts">
+
+<div class="container desc">
     {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    <div class="row">
+        <div class="col-lg-2 col-lg-offset-1">
+            <h4>
+                {% if forloop.first %}
+                POSTS
+                {% else %}
+                &nbsp;
+                {% endif %}
+            </h4>
+        </div>
+        <div class="col-lg-6">
+            <a href="{{ post.url }}">{{ post.title }}</a> <br/>
+            <em><small>Posted {{ post.date | date_to_string }}</small></em>
+        </div>
+    </div>
     {% endfor %}
-</ul>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <!--More Posts...-->
+            <br />
+            &nbsp;
+            <br />
+            &nbsp;
+        </div>
+    </div>
+</div>
 
-<div class="page-header">
-    <h1>Open Source Projects</h1>
+<div class="container bluewrap">
+    <div class="row">
+        <div class="row">
+            <div class="col-lg-2 col-lg-offset-1">
+                <h5>PROJECTS</h5>
+            </div>
+            <div class="col-lg-6">
+                <p>
+                These are the projects I've worked on recently, for older projects see the <a href="/projects.html">full project list</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <p>
+            <t><a href="http://www.tomahawk-player.org/">Tomahawk Player</a></t>
+            <br />
+            Tomahawk decouples the name of the song from the source it was shared from - and fulfills the request using all of your available sources.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <p>
+            <t><a href="https://www.gentoo.org/">Gentoo</a></t>
+            <br />
+            As Gentoo is the operating system on my laptop, I contribute patches and packages to the Qt, KDE and Science overlay for software that had a recent release or a change in the build system in the upstream source tree.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <p>
+            <t><a href="https://github.com/xhochy/node-tomahawkjs">node-tomahawkjs</a>, <a href="https://github.com/xhochy/node-tomahk">node-tomahk</a>, <a href="https://github.com/xhochy/hubot-tomahk">hubot-tomahk</a></t>
+            <br />
+            As an addition to the Tomahawk ecosystem, I created some Node.JS packages which build upon technologies which were born out of the player.
+            This includes (in the order of the title): a wrapper library to use the content/service resolvers from Tomahawk unmodified in Node, a wrapper to the toma.hk API and a hubot plugin that responds with the metadata to music links it detects in a chat.
+            </p>
+        </div>
+    </div>
 </div>
-<dl>
-    <dt><a href="http://www.tomahawk-player.org/">Tomahawk Player</a></dt>
-    <dd>Tomahawk decouples the name of the song from the source it was shared from - and fulfills the request using all of your available sources.</dd>
-    <dt><a href="http://github.com/xhochy/scrobbler/">scrobbler-ng</a></dt>
-    <dd>Ruby gem for accessing the Last.fm/Audioscrobbler API (2.0) with highspeed.</dd>
-    <dt><a href="http://github.com/xhochy/songride/">Songride (Last.fm Nationality Statistics)</a></dt>
-    <dd>Simple web app to determine where your favorite artists are coming from.</dd>
-    <dt><a href="https://github.com/HaDiNet/ldapom">ldapom</a></dt>
-    <dd>A simple ldap object mapper for python.</dd>
-    <dt><a href="https://github.com/xhochy/node-ktoblzcheck">node-ktoblzcheck</a></dt>
-    <dd>Node.JS wrapper for the ktoblzcheck library.</dd>
-    <dt><a href="https://github.com/xhochy/gentoo-overlay">gentoo-overlay</a></dt>
-    <dd>Gentoo Overlay for my own ebuilds and/or ebuilds that are not available in more "common" overlays.</dd>
-</dl>
-
-<!--
-<div class="page-header">
-  <h3>Profiles on various communities/networks/bug tracker/..</h3>
-</div>
-<div>
-    If you want to stay in contact or are looking for something. Most of them are not actively used.
-    <br />
-    <a href="http://about.me/xhochy">about.me</a>
-    <a href="https://coderwall.com/xhochy">Coderwall</a>
-    <a href="http://disqus.com/xhochy/">Disqus</a>
-    <a href="https://www.facebook.com/xhochy">Facebook</a>
-    <a href="https://www.flickr.com/photos/xhochy/">flickr</a>
-    <a href="https://foursquare.com/xhochy">foursquare</a>
-    <a href="https://geekli.st/xhochy">geekli.st</a>
-    <a href="https://github.com/xhochy">GitHub</a>
-    <a href="https://gitorious.org/~xhochy">gitorious</a>
-    <a href="https://plus.google.com/100152913301958089884">Google+</a>
-    <a href="http://www.last.fm/user/xhochy">Last.FM</a>
-    <a href="https://pinterest.com/uwekorn/">Pinterest</a>
-    <a href="https://www.ohloh.net/accounts/xhochy">Ohloh</a>
-    <a href="http://sharemyplaylists.com/members/uwe-l-korn">ShareMyPlaylists</a>
-    <a href="https://soundcloud.com/uwe-l-korn">SoundCloud</a>
-    <a href="https://stackexchange.com/users/1865597/xhochy?tab=accounts">StackExchange</a>
-    <a href="https://storify.com/xhochy">Storify</a>
-    <a href="http://www.thisismyjam.com/xhochy">ThisIsMyJAM</a>
-    <a href="https://twitter.com/xhochy">Twitter</a>
-    <a href="https://vimeo.com/xhochy">Vimeo</a>
-    <a href="http://www.webdoc.com/xhochy">webdoc</a>
-    <a href="https://www.youtube.com/user/xhochy">YouTube</a>
-</div>
--->
 

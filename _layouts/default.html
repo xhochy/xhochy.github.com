@@ -5,12 +5,25 @@
    <title>{{ page.title }}</title>
    <meta name="p:domain_verify" content="93c8e85b24e28fd27500e1c4ca4af247" />
    <link href="/atom.xml" rel="alternate" title="XhochY" type="application/atom+xml" />
+
+   <!-- Highlight.JS -->
    <link rel="stylesheet" href="https://yandex.st/highlightjs/7.3/styles/default.min.css">
    <script src="https://yandex.st/highlightjs/7.3/highlight.min.js"></script>
    <script>hljs.initHighlightingOnLoad();</script>
-   <!-- Homepage CSS -->
-   <link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css" type="text/css" media="screen, projection" />
+   <!-- Bootstrap core CSS -->
+   <link href="/assets/css/bootstrap.css" rel="stylesheet">
 
+   <!-- Custom styles for this template -->
+   <link href="/assets/css/main.css" rel="stylesheet">
+
+   <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+
+   <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+   <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+
+   <script src="/assets/js/jquery.min.js"></script>
+   <script type="text/javascript" src="/assets/js/smoothscroll.js"></script>
+   <script src="/assets/js/Chart.js"></script>
 </head>
 <body style="padding-top:50px">
     <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
@@ -41,31 +54,41 @@
     </header>
   <div class="container">
     {{ content }}
-    <hr />
-    <div class="row">
-      <div class="col-md-3">
-        <a href="/atom.xml">Posts</a>
-        <span class="label label-warning">Feed</span>
-      </div>
-      <div class="col-md-3">
-        <a href="http://github.com/xhochy/">github.com/xhochy</a><br />
-      </div>
-      <div class="col-md-3">
-        <a href="http://twitter.com/xhochy/">@xhochy</a><br />
-      </div>
-      <div class="col-md-3"></div>
-    </div>
-      <div class="footer">
-        <div class="contact">
-          <p>
-          </p>
-        </div>
-        <div class="rss">
-          <p>
-          </p>
-        </div>
-      </div>
+  </div>
+	<div id="footwrap">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-2 col-lg-offset-1">
+					<h5>CONTACT</h5>
+				</div>
+                <div class="col-lg-3">
+                    <p><sm>EMAIL</sm><br/>
+                    uwelk@xhochy.com<br/>
+                    </p>
+                </div>
+                <div class="col-lg-3">
+                    <p><sm>CODING</sm><br/>
+                    <a href="https://github.com/xhochy/">Github</a><br/>
+                    </p>
+                </div>
+                <div class="col-lg-3">
+                    <p><sm>SOCIAL</sm><br />
+                    <a href="https://twitter.com/xhochy">Twitter</a><br />
+                    </p>
+                </div>
+			</div><!--/.row -->
+		</div><!--/.container -->
+	</div><!--/ #footer -->
+  <div id="c">
+      <div class="container">
+          <p>Based on the Kelvin Theme by <a href="http://www.blacktie.co">BLACKTIE.CO</a></p>
+
       </div>
   </div>
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="/assets/js/bootstrap.js"></script>
 </body>
 </html>
