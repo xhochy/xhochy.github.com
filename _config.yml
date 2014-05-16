@@ -2,3 +2,4 @@ pygments: true
 permalink: "/:year/:month/:day/:title"
 lsi: false
 future: false
+markdown: kramdown
