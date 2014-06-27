@@ -124,6 +124,39 @@ title: XhochY
     </div>
 </div>
 <div class="container desc">
+    <div class="row">
+        <div class="col-lg-2 col-lg-offset-1">
+            <p>
+            <a href="http://www.videolan.org/"><t>VLC / VideoLAN</t></a>,
+            <a href="https://libav.org/"><t>libav</t></a>,
+            <a href="http://phonon.kde.org/"><t>Phonon(-VLC)</t></a>
+            <br />
+            <small><em>since March 2014</em></small>
+            </p>
+        </div>
+        <div class="col-lg-6">
+            <p>
+            As another direction started from my work on Tomahawk, some of my time went into fixing various problems in our multimedia stack.
+            In Tomahawk, we use Phonon as our playback library with VLC as the prefferred backend.
+            In VLC, most of the codecs are provided through libav/ffmpeg.
+            </p>
+            <p>
+            The most impactful contribution in this stack was the improvement of audio-only playback encapsulated in the <t>rtmp://</t> protocl.
+            This included fixing the detection of the number of media streams present in an rtmp stream that did not send metatdata.
+            Furthermore we had to ensure that all possible backends support the same URL schema so we could pass this information seamlessly through all layers.
+            (This was required for Beats Music support in Tomahawk)
+            </p>
+            <p>
+            <em>Used techniques:&nbsp;</em>
+            <span class="label label-primary">C</span>
+            <span class="label label-primary">C++</span>
+            <span class="label label-primary">Wireshark / tcpdump</span>
+            <span class="label label-primary">rtmp</span>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container desc">
     <div class="col-lg-7 col-lg-offset-2">
         <p>
         <h2><em>Small Projects and Weekend Hacks</em></h2>
