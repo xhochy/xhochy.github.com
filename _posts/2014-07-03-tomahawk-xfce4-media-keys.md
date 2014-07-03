@@ -1,5 +1,5 @@
 ---
-layout: Post
+layout: post
 title: How to get global media keys support for Tomahawk in XFCE4
 ---
 
