@@ -5,24 +5,24 @@ title: Akka Streams for extracting Wikipedia Articles
 
 *We use Akka Streams as a new technique to extract specific articles from the Wikipedia xml dump into single files without the need to fit all data into RAM.*
 
-One of the best data sources to derive information on certain topics is the Wikipedia.
+One of the best data sources to derive information on certain topics is Wikipedia.
 Each month, they publish a [data dump of the whole site](https://dumps.wikimedia.org/enwiki/) for each available language.
-For a sideproject, I wanted to obtain the country of origin for music artists from the information stored in the articles.
+For a side project, I wanted to obtain the country of origin for music artists from the information stored in the articles.
 Mostly the information is inside a special Infobox directly at the beginning of the article but in some cases, it is part of the main text.
-Also as I often run other types of analytics on Wikipedia articles, I wanted to have a reproducible way to extract the relevant articles from a new dump without loading it fuly into RAM.
+Also as I often run other types of analytics on Wikipedia articles, I wanted to have a reproducible way to extract the relevant articles from a new dump without loading it fully into RAM.
 
 Altough you could simply use a streaming XML parser and just directly dump out the contents of an articles once you pass over it, with [Akka Streams](http://doc.akka.io/docs/akka-stream-and-http-experimental/1.0/scala/stream-introduction.html) you can build a pipeline that is easily extended to mpre logic.
-Akka Streams is an implementation of the [Reactive Streams](http://www.reactive-streams.org/) initiative that allows you to asynchronous process data streams while adhering to bounded resources.
-For handling those streams, you are provided with the already known interfaces of the `map`, `filter`, `reduce`, .. functions of Scala.
+Akka Streams is an implementation of the [Reactive Streams](http://www.reactive-streams.org/) initiative that allows you to asynchronously process data streams while adhering to bounded resources.
+For handling those streams, you are provided with the already known interfaces of the `map`, `filter`, `reduce`, ... functions of Scala.
 
-A pipeline in Akka Streams is made up of a `Source` that emits elements into the pipeline, an arbitrary number (none is ok) of `Flows` that process the data and a `Sink` that consumes the output of the pipeline, e.g. stores it to files.
+A pipeline in Akka Streams is made up of a `Source` that emits elements into the pipeline, an arbitrary number (none is ok) of `Flows` that process the data and a `Sink` that consumes the output of the pipeline, e.g. by storing it in files.
 An important aspect of Reactive Streams is that each of the stages in the pipeline controls the velocity of the flow of data through the notion of backpressure.
 This is to ensure that not too many elements are buffered in memory.
 With this technique we can control exactly the amount of RAM used and do not suffer `OutOfMemoryErrors`.
 
-For extracting articles from the (english) Wikipedia Dump, our main source is the `enwiki-20151002-pages-articles.xml.bz2` file.
+For extracting articles from the (English) Wikipedia Dump, our main source is the `enwiki-20151002-pages-articles.xml.bz2` file.
 To integrate this in the Akka Stream system, we need a `Source` that reads this file and emits article-by-article while parsing the file.
-Akka Streams provides a constructor to create a `Source` from an `Iterator` that will evaluated in line with the backpressure from the later stages in the pipeline.
+Akka Streams provides a constructor to create a `Source` from an `Iterator` that will be evaluated in line with the backpressure from the later stages in the pipeline.
 This `Iterator` is [implemented through streaming XML parsing](https://github.com/xhochy/open-data-dump-analyses/blob/e4e67d42b7a8d3b1d262d7fb75e03b3e017a996f/wikipedia/akka-streams/src/main/scala/com/xhochy/WikiArticleIterator.scala).
 To use it in Akka Streams, we simply instantiate the `Iterator` and pass it to the according `Source` constructor:
 
@@ -37,11 +37,11 @@ def source(filename:String): Source[WikiArticle, Unit] = {
 
 For our pipeline, we model two simple steps: First we heuristically determine the type of the article and then re-compress its contents if its possibly music related, then we filter on only the articles that are about an artist and not e.g. only a song.
 To utilise the multi-core compute power of concurrent CPUs, we utilise Akka Stream's capability to asynchronously process some steps in the pipeline.
-Asynchronous (or parallel) steps are implemented in Akka Streams as transformers that return Future and for each of these step, the amount of parallelism is fixed so that the flow and the memory usage is kept at a constant level.
+Asynchronous (or parallel) steps are implemented in Akka Streams as transformers that return `Future`s and for each of these steps, the amount of parallelism is fixed so that the flow and the memory usage is kept at a constant level.
 
 In our pipeline, the object returned from the `WikiArticleIterator` contains a title property which we simply pass on to the new `Article` object.
-Whereas we use the `text` property to determine the type of the article, in this case based on the presence of an infobox, and then store the compressed content in the object.
-We do the compression here in the future so that we can utilise the multicore power of the CPUs in our machines (This step will be executed several times in parallel).
+Whereas we use the `text` property to determine the type of the article, in this case based on the presence of an infobox, and then store the compressed content in the object. <!-- this sentence is confusing/incomplete/... -->
+We do the compression here in the future so that we can utilise the multicore power of the CPUs in our machines (this step will be executed several times in parallel).
 As only the music related articles are relevant for us later on, we just store an empty bytearray in the articles of the type `Other`.
 
 {% highlight scala %}
@@ -114,7 +114,7 @@ Afterwards, we apply a filter to only pass the articles about artists to the sin
 With `toMat` we start the materialisation of the stream with the `storeArticle` function as the destination.
 
 The stream returns a future to the result of the sink function fold.
-On the completion of this future, we shutdown Akka's actor system and print the total number of artist pages.
+On the completion of this future, we shut down Akka's actor system and print the total number of artist pages.
 
 {% highlight scala %}
 {% raw %}
