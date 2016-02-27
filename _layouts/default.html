@@ -1,97 +1,26 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-<head>
-   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>{{ page.title }}</title>
-   <meta name=viewport content="width=device-width, initial-scale=1">
-   <meta name="p:domain_verify" content="93c8e85b24e28fd27500e1c4ca4af247" />
-   <link href="/atom.xml" rel="alternate" title="XhochY" type="application/atom+xml" />
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    {% include head.html %}
+    {% include opengraph.html %}
+    {% include twittercard.html %}
+  </head>
+	<body id="top">
 
-   <!-- Highlight.JS -->
-   <link rel="stylesheet" href="https://yandex.st/highlightjs/7.3/styles/default.min.css">
-   <script src="https://yandex.st/highlightjs/7.3/highlight.min.js"></script>
-   <script>hljs.initHighlightingOnLoad();</script>
-   <!-- Bootstrap core CSS -->
-   <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+		{% include header.html %}
 
-   <!-- Custom styles for this template -->
-   <link href="/assets/css/main.css" rel="stylesheet">
+		<!-- Main -->
+			<div id="main">
+				{{ content }}
+			</div>
 
-   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+      {% include footer.html %}
+      {% include scripts.html %}
 
-   <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
-   <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
-
-   <script src="/assets/js/jquery.min.js"></script>
-   <script type="text/javascript" src="/assets/js/smoothscroll.js"></script>
-   <script src="/assets/js/Chart.js"></script>
-</head>
-<body style="padding-top:50px">
-    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="/" class="navbar-brand">XhochY</a>
-        </div>
-        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-        <ul class="nav navbar-nav">
-            <li>
-            <a href="/">Home</a>
-            </li>
-            <li>
-            <a href="/projects.html">Projects</a>
-            </li>
-            <li>
-            <a href="/imprint.html">Impressum</a>
-            </li>
-        </ul>
-        </nav>
-    </div>
-    </header>
-  <div class="container">
-    {{ content }}
-  </div>
-	<div id="footwrap">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-lg-2 col-lg-offset-1">
-					<h5>CONTACT</h5>
-				</div>
-                <div class="col-lg-3">
-                    <p><sm>EMAIL</sm><br/>
-                    uwelk@xhochy.com<br/>
-                    PGP: <a href="https://keybase.io/xhochy">1A639CEFDD0C6A43</a>
-                    </p>
-                </div>
-                <div class="col-lg-3">
-                    <p><sm>CODING</sm><br/>
-                    <a href="https://github.com/xhochy/">Github</a><br/>
-                    </p>
-                </div>
-                <div class="col-lg-3">
-                    <p><sm>SOCIAL</sm><br />
-                    <a href="https://twitter.com/xhochy">Twitter</a><br />
-                    </p>
-                </div>
-			</div><!--/.row -->
-		</div><!--/.container -->
-	</div><!--/ #footer -->
-  <div id="c">
-      <div class="container">
-          <p>Based on the Kelvin Theme by <a href="http://www.blacktie.co">BLACKTIE.CO</a></p>
-
-      </div>
-  </div>
-  <!-- Bootstrap core JavaScript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-</body>
+	</body>
 </html>

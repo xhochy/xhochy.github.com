@@ -7,22 +7,22 @@ title: Akka Streams for extracting Wikipedia Articles
 
 One of the best data sources to derive information on certain topics is the Wikipedia.
 Each month, they publish a [data dump of the whole site](https://dumps.wikimedia.org/enwiki/) for each available language.
-For a sideproject, I wanted to obtain the country of origin for music artists from the information stored in the articles.
+For a side project, I wanted to obtain the country of origin for music artists from the information stored in the articles.
 Mostly the information is inside a special Infobox directly at the beginning of the article but in some cases, it is part of the main text.
-Also as I often run other types of analytics on Wikipedia articles, I wanted to have a reproducible way to extract the relevant articles from a new dump without loading it fuly into RAM.
+Also as I often run other types of analytics on Wikipedia articles, I wanted to have a reproducible way to extract the relevant articles from a new dump without loading it fully into RAM.
 
-Altough you could simply use a streaming XML parser and just directly dump out the contents of an articles once you pass over it, with [Akka Streams](http://doc.akka.io/docs/akka-stream-and-http-experimental/1.0/scala/stream-introduction.html) you can build a pipeline that is easily extended to mpre logic.
+Although you could simply use a streaming XML parser and just directly dump out the contents of an articles once you pass over it, with [Akka Streams](http://doc.akka.io/docs/akka-stream-and-http-experimental/1.0/scala/stream-introduction.html) you can build a pipeline that is easily extended to more logic.
 Akka Streams is an implementation of the [Reactive Streams](http://www.reactive-streams.org/) initiative that allows you to asynchronous process data streams while adhering to bounded resources.
 For handling those streams, you are provided with the already known interfaces of the `map`, `filter`, `reduce`, .. functions of Scala.
 
-A pipeline in Akka Streams is made up of a `Source` that emits elements into the pipeline, an arbitrary number (none is ok) of `Flows` that process the data and a `Sink` that consumes the output of the pipeline, e.g. stores it to files.
-An important aspect of Reactive Streams is that each of the stages in the pipeline controls the velocity of the flow of data through the notion of backpressure.
+A pipeline in Akka Streams is made up of a `Source` that emits elements into the pipeline, an arbitrary number (none is OK) of `Flows` that process the data and a `Sink` that consumes the output of the pipeline, e.g. stores it to files.
+An important aspect of Reactive Streams is that each of the stages in the pipeline controls the velocity of the flow of data through the notion of back pressure.
 This is to ensure that not too many elements are buffered in memory.
 With this technique we can control exactly the amount of RAM used and do not suffer `OutOfMemoryErrors`.
 
-For extracting articles from the (english) Wikipedia Dump, our main source is the `enwiki-20151002-pages-articles.xml.bz2` file.
+For extracting articles from the (English) Wikipedia Dump, our main source is the `enwiki-20151002-pages-articles.xml.bz2` file.
 To integrate this in the Akka Stream system, we need a `Source` that reads this file and emits article-by-article while parsing the file.
-Akka Streams provides a constructor to create a `Source` from an `Iterator` that will evaluated in line with the backpressure from the later stages in the pipeline.
+Akka Streams provides a constructor to create a `Source` from an `Iterator` that will evaluated in line with the back pressure from the later stages in the pipeline.
 This `Iterator` is [implemented through streaming XML parsing](https://github.com/xhochy/open-data-dump-analyses/blob/e4e67d42b7a8d3b1d262d7fb75e03b3e017a996f/wikipedia/akka-streams/src/main/scala/com/xhochy/WikiArticleIterator.scala).
 To use it in Akka Streams, we simply instantiate the `Iterator` and pass it to the according `Source` constructor:
 
@@ -83,7 +83,7 @@ This filter is written as we would be dealing with a normal (everything in memor
 The final stage of the whole stream is a `Sink` where we define where the results of the pipeline shall go / be stored.
 In this implementation, we store each article as a file in the local filesystem.
 To handle special characters in the article title that the filesystem might not be able to store, we use the base64 encoded article title as the filename.
-Furthermore to have a progress monitoring, we print the current number of saved articles on the commandline.
+Furthermore to have a progress monitoring, we print the current number of saved articles on the command line.
 As the sink is a special kind of reduction, we return in each call to our sink function the current number of articles.
 
 {% highlight scala %}
@@ -104,10 +104,10 @@ As the sink is a special kind of reduction, we return in each call to our sink f
 {% endhighlight %}
 
 With all the parts of the pipeline now implemented, we can plug them together.
-We need as the basis an `ActorSystem` and an `ActorMaterializer` and also import the default dispather into the current scope as implicts which will be picked up by the respective Akka Streams calls.
-For the asyncronous tasks, we need to specify how much parallelism we want. We simply default here to the number of available CPUs.
+We need as the basis an `ActorSystem` and an `ActorMaterializer` and also import the default dispatcher into the current scope as implicts which will be picked up by the respective Akka Streams calls.
+For the asynchronous tasks, we need to specify how much parallelism we want. We simply default here to the number of available CPUs.
 
-For the pipeline, the first components we initialize are the input, i.e. the source, and the output, i.e. the `Sink` which is in our case a routine that stores the final articles on disk and counts the number of processed articles.
+For the pipeline, the first components we initialise are the input, i.e. the source, and the output, i.e. the `Sink` which is in our case a routine that stores the final articles on disk and counts the number of processed articles.
 To connect source and sink, we add the intermediate steps of the pipeline.
 The main step is the `guessType` function which we chain with `mapAsyncUnordered(numCPUs)` into the pipeline so that we run it several times in parallel.
 Afterwards, we apply a filter to only pass the articles about artists to the sink.

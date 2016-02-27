@@ -1,98 +1,29 @@
 ---
 layout: default
-title: XhochY
+image: /images/fulls/01.jpg
 ---
+<!-- This loops through the paginated posts -->
+{% for post in paginator.posts %}
+  <section>
+    <h2><a href="{{ post.url | prepend: site.github.url }}">{{ post.title }}</a></h2>
+    <p>
+      <span>{{ post.date | date: "%d %B %Y" }}{% if page.categories %} on {{ page.categories | join: ', ' }}{% endif %}</span>
+    </p>
+    <div>
+      {{ post.excerpt }}
+    </div>
+  </section>
+{% endfor %}
 
-<div id="intro">
-    <div class="container">
-        <div class="row" id="name">
-            <div class="col-lg-2 col-lg-offset-1">
-                <img src="/images/avatar.jpg" alt="Avatar" />
-            </div>
-            <div class="col-lg-6">
-                <h2>Uwe L. Korn</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-2 col-lg-offset-1">
-                <h5>ABOUT</h5>
-            </div>
-            <div class="col-lg-6">
-                Currently I'm Data Scientist at a German Predictive Analytics company.
-                Before that I studied at the University of Bristol in the MSc program <em>"Advanced Computing - Data Mining, High Performance Computing and Machine Learning"</em> and got a <em>Bachelor of Science in Computer Science</em> at the Karlsruhe Institue of Technology.
-                Asides my studies, I devote some time to open source projects like Tomahawk Player and spend occasionally a weekend building hacks around music.
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container desc">
-    {% for post in site.posts %}
-    <div class="row">
-        <div class="col-lg-2 col-lg-offset-1">
-            <h4>
-                {% if forloop.first %}
-                POSTS
-                {% else %}
-                &nbsp;
-                {% endif %}
-            </h4>
-        </div>
-        <div class="col-lg-6">
-            <a href="{{ post.url }}.html">{{ post.title }}</a> <br/>
-            <em><small>Posted {{ post.date | date_to_string }}</small></em>
-        </div>
-    </div>
-    {% endfor %}
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-            <!--More Posts...-->
-            <br />
-            &nbsp;
-            <br />
-            &nbsp;
-        </div>
-    </div>
-</div>
-
-<div class="container bluewrap">
-    <div class="row">
-        <div class="col-lg-2 col-lg-offset-1">
-            <h5>PROJECTS</h5>
-        </div>
-        <div class="col-lg-6">
-            <p>
-            These are the projects I've worked on recently, for older projects see the <a href="/projects.html">full project list</a>.
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-            <p>
-            <t><a href="http://www.tomahawk-player.org/">Tomahawk Player</a></t>
-            <br />
-            Tomahawk decouples the name of the song from the source it was shared from - and fulfills the request using all of your available sources.
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-            <p>
-            <t><a href="https://www.gentoo.org/">Gentoo</a></t>
-            <br />
-            As Gentoo is the operating system on my laptop, I contribute patches and packages to the Qt, KDE and Science overlay for software that had a recent release or a change in the build system in the upstream source tree.
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-            <p>
-            <t><a href="https://github.com/xhochy/node-tomahawkjs">node-tomahawkjs</a>, <a href="https://github.com/xhochy/node-tomahk">node-tomahk</a>, <a href="https://github.com/xhochy/hubot-tomahk">hubot-tomahk</a></t>
-            <br />
-            As an addition to the Tomahawk ecosystem, I created some Node.JS packages which build upon technologies which were born out of the player.
-            This includes (in the order of the title): a wrapper library to use the content/service resolvers from Tomahawk unmodified in Node, a wrapper to the toma.hk API and a hubot plugin that responds with the metadata to music links it detects in a chat.
-            </p>
-        </div>
-    </div>
-</div>
-
+{% if paginator.total_pages > 1 %}
+<!-- Pagination links -->
+<section>
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path }}">Previous</a>
+  {% endif %}
+  <span>Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}">Next</a>
+  {% endif %}
+</section>
+{% endif %}

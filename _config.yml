@@ -1,5 +1,17 @@
-highlighter: pygments
-permalink: "/:year/:month/:day/:title"
-lsi: false
-future: false
-markdown: kramdown
+title: Uwe's Blog
+description: >
+  **Uwe L. Korn**, Data Scientist, Music Hacker and Food lover.
+copyright: Uwe L. Korn
+sass:
+  sass_dir: assets/sass
+url: https://xhochy.com
+twitter_username: "xhochy"
+#linkedin_username: "#"
+#pinterest_username:
+#flickr_username:
+github_username:  "xhochy"
+feed_icon: rss
+# email: "#"
+gems: [jekyll-paginate]
+paginate_path: "/page/:num/"
+paginate: 5
