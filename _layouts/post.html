@@ -20,7 +20,7 @@
         <header class="major">
           <h2>{{ page.title }}</h2>
           <p>
-            {{ page.date | date: "%d %B %Y" }}{% if page.categories %} on {{ page.categories | array_to_sentence_string }}{% endif %}.
+            {{ page.date | date: "%d %B %Y" }},
             {% include readingtime.html %}
           </p>
         </header>
