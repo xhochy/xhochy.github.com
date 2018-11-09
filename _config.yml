@@ -42,9 +42,9 @@ defaults:
 
 navigation_header:
   Home: /
-  Projects: /projects/
-  About Uwe: /cv/
-  Talks: /talks/
+  Projects: /projects.html
+  About Uwe: /cv.html
+  Talks: /talks.html
   GitHub: https://github.com/xhochy
   Twitter: https://twitter.com/xhochy
 
