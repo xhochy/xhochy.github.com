@@ -1,3 +1,8 @@
+theme: alembic-jekyll-theme
+
+plugins:
+  - jekyll-paginate
+
 title: Uwe's Blog
 description: >
   **Uwe L. Korn**, Data Scientist, Music Hacker and Food lover.
@@ -6,13 +11,42 @@ sass:
   sass_dir: assets/sass
 url: https://uwekorn.com
 twitter_username: "xhochy"
-#linkedin_username: "#"
-#pinterest_username:
-#flickr_username:
 github_username:  "xhochy"
 feed_icon: rss
-# email: "#"
-gems: [jekyll-paginate]
 paginate_path: "/page/:num/"
 paginate: 5
 highlighter: rouge
+
+timezone: Europe/London # Timezone for blog posts and alike
+
+# 5. Collections
+collections:
+  posts:
+    title:
+    output: true
+    description:
+    feature_text: |
+      ## Uwe's Blog
+      My writing about data engineering, opensource development, general
+      programming and thoughts about engineering culture.
+    feature_image: "https://picsum.photos/2560/600?image=1026&blur"
+    
+# 6. Jekyll collections settings
+defaults:
+  -
+    feature_image: "https://picsum.photos/2560/600?image=1026&blur"
+    scope:
+      path: ""
+    values:
+      image: "/assets/default-social-image.png" # Default image for sharing
+
+navigation_header:
+  Home: /
+  Projects: /projects/
+  About Uwe: /cv/
+  Talks: /talks/
+  GitHub: https://github.com/xhochy
+  Twitter: https://twitter.com/xhochy
+
+navigation_footer:
+  Imprint: /imprint/

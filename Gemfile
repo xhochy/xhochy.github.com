@@ -1,3 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'github-pages'
+gem 'alembic-jekyll-theme'
+gem 'jekyll-toc'
