@@ -38,7 +38,7 @@ defaults:
     scope:
       path: ""
     values:
-      image: "/assets/default-social-image.png" # Default image for sharing
+      image: "https://avatars2.githubusercontent.com/u/70274?s=460&v=4" # Default image for sharing
 
 navigation_header:
   Home: /
