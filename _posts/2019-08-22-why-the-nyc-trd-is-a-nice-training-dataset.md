@@ -220,7 +220,7 @@ ax = sample.plot.scatter(x="trip_distance", y="fare_amount")
 sample.plot.line(x="trip_distance", y="price", ax=ax, color="red")
 ```
 
-![Trip distance vs fare amount with regression on filtered data](/images/nyc-tld-trip-distance-fare-amount-reg1.png)
+![Trip distance vs fare amount with regression on filtered data](/images/nyc-tld-trip-distance-fare-amount-reg2.png)
 
 ## Schema changes
 
