@@ -14,9 +14,22 @@ As part of his work to provide an efficient data interchange he became a core co
 
 ## Current Positions
 
+#### ML & Data Engineering – QuantCo Inc
+
+*since April 2019*
+
 #### (Senior) Data Scientist — Blue Yonder
 
-*since November 2014*
+*November 2014 - March 2019*
+
+* Design, planning, implementation, and operation of data pipelines using Apache Parquet and Dask/distributed.
+* Shaping and planning the software architecture roadmap for the Data Engineering stack and the following project planning together with the team to implement the roadmap elements.
+* Participation in open source development and regular speaker at tech conferences, especially in the PyData and Apache Arrow/Parquet communities.
+* Data analysis, adoption of the machine learning model and/or communication to the customer during project and concept phases.
+* Organisation of recruiting activities including the company presentation at job fairs.
+* Talent development of fellow developers giving feedback and outlining education and career opportunities; active shaping of Data Engineering as a role.
+* In-house consulting to improve technical collaboration on a cross-location basis.
+* Review of open source usage including the licensing in the company
 
 #### Committer & Member of the PMC — Apache Arrow
 
