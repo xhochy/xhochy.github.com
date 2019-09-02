@@ -6,6 +6,17 @@ feature_text: |
 ---
 
 
+### 2019
+
+PyData Frankfurt (Main) – (Efficient) Data Exchange with "Foreign" Ecosystems \|
+[SlideShare](https://de.slideshare.net/xhochy/pydata-frankfurt-efficient-data-exchange-with-foreign-ecosystems) \|
+[SpeakerDeck](https://speakerdeck.com/xhochy/pydata-frankfurt-efficient-data-exchange-with-foreign-ecosystems)
+
+Berlin Buzzwords – Taming the language border in data analytics and science with Apache Arrow \|
+[SlideShare](https://de.slideshare.net/xhochy/berlin-buzzwords-2019-taming-the-language-border-in-data-analytics-and-science-with-apache-arrow) \|
+[SpeakerDeck](https://speakerdeck.com/xhochy/berlin-buzzwords-2019-taming-the-language-border-in-data-analytics-and-science-with-apache-arrow) \|
+[YouTube](https://www.youtube.com/watch?v=IeHl_KluuDQ)
+
 ### 2018
 
 PyConDE / PyData Karlsruhe – Fulfilling Apache Arrow's Promises: Pandas on JVM memory without a copy \|
