@@ -8,6 +8,9 @@ feature_text: |
 
 ### 2019
 
+PyData Südwest Karlsruhe – Lightning Talk on the creation of a conda-forge package \|
+[Pull Request](https://github.com/conda-forge/staged-recipes/pull/10028)
+
 PyData Frankfurt (Main) – (Efficient) Data Exchange with "Foreign" Ecosystems \|
 [SlideShare](https://de.slideshare.net/xhochy/pydata-frankfurt-efficient-data-exchange-with-foreign-ecosystems) \|
 [SpeakerDeck](https://speakerdeck.com/xhochy/pydata-frankfurt-efficient-data-exchange-with-foreign-ecosystems)
