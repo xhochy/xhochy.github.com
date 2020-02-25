@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - rb-jekyll
+  - rb-jekyll<4
   - rb-nokogiri
   - rb-commonmarker
   - rb-bundler
