@@ -30,7 +30,7 @@ collections:
       My writing about data engineering, opensource development, general
       programming and thoughts about engineering culture.
     feature_image: "https://picsum.photos/2560/600?image=1026&blur"
-    
+
 # 6. Jekyll collections settings
 defaults:
   -
@@ -41,13 +41,21 @@ defaults:
       image: "https://avatars2.githubusercontent.com/u/70274?s=460&v=4" # Default image for sharing
 
 navigation_header:
-  Home: /
-  Projects: /projects.html
-  About Uwe: /cv.html
-  Talks: /talks.html
-  GitHub: https://github.com/xhochy
-  Twitter: https://twitter.com/xhochy
+  - title: Home
+    url: /
+  - title: Projects
+    url: /projects.html
+  - title: About Uwe
+    url: /cv.html
+  - title: Talks
+    url: /talks.html
+  - title: Github
+    url: https://github.com/xhochy
+  - title: Twitter
+    url: https://twitter.com/xhochy
 
 navigation_footer:
-  RSS Feed: /rss.xml
-  Imprint: /imprint.html
+  - title: RSS Feed
+    url: /rss.xml
+  - title: Imprint
+    url: /imprint.html
