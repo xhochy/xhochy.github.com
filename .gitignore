@@ -1,1 +1,5 @@
 _site
+*.bak
+.envrc
+.jekyll-cache/
+.sass-cache/
