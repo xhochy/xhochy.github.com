@@ -204,7 +204,7 @@ Going through the `pandas` source code using a simple `git grep`, it seems like 
 * Methods on `pandas.DataFrame`: `diff`, `take`, `xs`, `reindex`, `_is_mixed_type`, `_is_numeric_mixed_type`, `values`, `fillna`, `replace`, `resample`
 * `groupby` triggers consolidation on the result
 * `_setitem_with_indexer`
-* `pandas.condat`
+* `pandas.concat`
 * If the `BlockManager` has more than 100 blocks
 
 These are only the methods that directly call consolidation.
