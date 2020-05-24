@@ -31,6 +31,12 @@ As part of his work to provide an efficient data interchange he became a core co
 * In-house consulting to improve technical collaboration on a cross-location basis.
 * Review of open source usage including the licensing in the company
 
+#### Core Member – conda-forge
+
+*since November 2019*
+
+Member of the core team running conda-forge, the community-led distribution for conda packages.
+
 #### Committer & Member of the PMC — Apache Arrow
 
 *since October 2016*
