@@ -247,23 +247,23 @@ for i in range(97):
 
 This example now shows how "it depends" in which runtime you get.
 As a standalone thing, adding a new column as well as doing a simple in-place edit is a single-digit `ms` operation.
-If one of these operations triggers a block consolidation though (`.loc` does always check whether it should one), they can take nearly a second, making them much more expensive.
+If one of these operations triggers a block consolidation though (`.loc` does always check whether it should do one), they can take nearly a second, making them much more expensive.
 
 Conclusion and next steps
 =========================
 
 In certain workloads, the `BlockManager` has a (significant) positive impact.
-For us, this sadly doesn't apply to most of my uses cases.
+For us, this sadly doesn't apply to most use cases.
 Having the `BlockManager` in the background has the implication that you cannot reason about the performance of a four-line feature transformation without looking at the context of where it is used.
-This makes writing ultra-efficient a bit harder (writing efficient code is still easy, if everything is vectorised, `pandas` is fast).
-But when you have a good understanding of the `BlockManager`, you will be aware why some statements have significant different runtimes depending on the context they are created in.
+This makes writing ultra-efficient code a bit harder (writing efficient code is still easy, if everything is vectorised, `pandas` is fast).
+But when you have a good understanding of the `BlockManager`, you will be aware why some statements have significantly different runtimes depending on the context they are created in.
 
 Looking at the current development in/around `pandas`, the `BlockManager` is actually a bit less used and gets some overhaul.
 For reference, one item on the [pandas roadmap is a "block manager rewrite"](https://pandas.pydata.org/docs/development/roadmap.html#block-manager-rewrite).
 Additionally, the new [`Extension{Dtype,Array}`](https://pandas.pydata.org/docs/development/extending.html#extension-types) columns are also not blocked by the `BlockManager`, i.e. when using such a column type, performance will be predictable (note that predictable doesn't mean "faster").
 
-There are now some open questions that I have myself I will explore in follow-up blog posts.
+There are now some open questions that I have myself that I will explore in follow-up blog posts.
 For me, the first one would be what the optimal way is to assign something to a DataFrame.
-As simple as it may sound, it really makes a difference on whether you do a exploratory data analysis or write data pipeline code where performance tuning can still to lead a large return-on-invest.
+As simple as it may sound, it really makes a difference whether you do exploratory data analysis or write data pipeline code where performance tuning can still lead to a large return-on-invest.
 
 *Title picture: Photo by [Kaspars Upmanis](https://unsplash.com/@upmanis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/barcelona?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)*
