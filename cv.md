@@ -7,16 +7,21 @@ feature_text: |
 
 **[Current Positions](#current-positions)** \| **[Previous Experience](#previous-experience)** \| **[Education](#education)** \| **[Voluntary Activities](#voluntary-activities)**
 
-Uwe Korn is a Senior Data Scientist at the German RetailTec company Blue Yonder.
-His expertise is on building scalable architectures for machine learning services.
+Uwe Korn is a Lead Software/Data Engineer at the data science company QuantCo.
+His expertise is on building scalable architectures for machine learning services and the teams & culture around that.
 Nowadays he focuses on the data engineering infrastructure that is needed to provide the building blocks to bring machine learning models into production.
-As part of his work to provide an efficient data interchange he became a core committer to the Apache Parquet and Apache Arrow projects.
+As part of his work to provide an efficient data interchange he became a core committer to the Apache Parquet, Apache Arrow and conda-forge projects.
 
 ## Current Positions
 
 #### ML & Data Engineering – QuantCo Inc
 
 *since April 2019*
+
+* Build up a team of data / software / machine learning engineers and establish a software engineering culture in the whole company.
+* Enable Machine Learning Engineers / Data Scientists to work more effectively with their stack by improving their work environment and building tools to ease their workflows.
+* Support building data pipelines and a general data engineering infrastructure.
+* Ensure smooth deployments through a well-setup packaging infrastructure; this lead to a heavy involvement in conda & conda-forge.
 
 #### (Senior) Data Scientist — Blue Yonder
 
