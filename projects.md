@@ -48,6 +48,17 @@ Although pandas provides a huge set of algorithms on top of the `ExtensionArray`
 
 Used technologies: `Apache Arrow`, `pandas`, `numba`
 
+
+### [conda-forge](https://conda-forge.org/)
+
+*since spring 2017*
+
+Initially as the basis for the Apache Arrow development environment, nowadays for all my environments, I have used `conda` as the package manager and `conda-forge` as the preferred distributions for the packages.
+This enabled me to have separate development environments for all my C++/Python/R/.. projects on single machine while trying out different dependency versions for each.
+
+My main contributions to conda-forge consists of adding several Python and R packages used at work as well as the C++ dependencies for the Apache Arrow project.
+Recently I shifted my focus more on the structure and efficiency of all conda-forge packages to make it as suitable for production as well as scientific usage.
+
 ## Past open-source projects
 
 #### [Tomahawk Player](https://www.tomahawk-player.org/)
