@@ -184,8 +184,6 @@ With all these changes in place, we have a look at the above described conda env
 <br />
 While these aren't the same numbers as with the wheel size, given that this is the total environment and `conda` packages of `pyarrow` are getting more love, they are still very impressive.
 
-A nice thing is that now reading Parquet files with `pandas` will only set you back 46 MiB of disk space for the additional dependencies instead of the initial 465MiB, a 10x improvement.
-
 ## Next steps
 
 While we have some nice improvements in environment size with removing static libraries and trimming down the dependencies, we still are far away from the perfect size.
