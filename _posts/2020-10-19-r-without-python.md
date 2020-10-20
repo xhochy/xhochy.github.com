@@ -4,7 +4,7 @@ title: "Removing Python as a dependency of R"
 feature_image: "/images/boris-misevic-kjH2m_tl7Pg-unsplash.jpg"
 ---
 
-*Surprisingly Python was a runtime dependency of R on conda-forge. A R doesn't need Python to run, this was a bit weird. We got rid of this by splitting up the GLib package.*
+*Surprisingly Python was a runtime dependency of R on conda-forge. As R doesn't need Python to run, this was a bit weird. We got rid of this by splitting up the GLib package.*
 
 Typically people argue whether they should use R or Python to solve a problem.
 In the case of conda-forge's `r-base` package, on Linux, you got both when you only asked for one as Python was listed as a runtime dependency of R.
