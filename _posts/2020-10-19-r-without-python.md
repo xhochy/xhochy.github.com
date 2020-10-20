@@ -157,7 +157,7 @@ While the new recipes and the new pinning should ensure that the correct `run_ex
 To ensure that on an `r-base` installation only `libglib` and not `glib` and `python` are installed, we need to remove `glib` from the `run` sections of the packages that `r-base` pulls in.
 This is in addition to `r-base` also [cairo](https://github.com/conda-forge/cairo-feedstock/pull/55), [pango](https://github.com/conda-forge/pango-feedstock/pull/34), [harfbuzz](https://github.com/conda-forge/harfbuzz-feedstock/pull/56).
 
-Finally, we also run the `glib` migration for r-base: https://github.com/conda-forge/r-base-feedstock/pull/140.
+Finally, we also run the `glib` migration for r-base: [r-base#140](https://github.com/conda-forge/r-base-feedstock/pull/140).
 Here we can already see as part of the CI builds that `conda-build` doesn't install `python` or `glib` in the test environment.
 
 Creating a new environment for R 4.0 using `conda create -n r-test -c conda-forge r-base=4.0` leads to the following solution as of 18th October:
