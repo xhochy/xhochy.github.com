@@ -5,6 +5,13 @@ feature_text: |
   Presentations and Tutorials I have given at various public events.
 ---
 
+### 2020
+
+Techtiefen #31 - Effiziente Datenverarbeitung \| [Podcast](https://techtiefen.de/31-effiziente-datenverarbeitung/)
+
+PyData Global 2020 – [pandas.(to/from)_sql is simple but not fast](https://global.pydata.org/talks/135) \|
+[SlideShare](https://de2.slideshare.net/xhochy/pandastofromsql-is-simple-but-not-fast) \|
+[SpeakerDeck](https://speakerdeck.com/xhochy/to-sql-is-simple-but-not-fast)
 
 ### 2019
 
