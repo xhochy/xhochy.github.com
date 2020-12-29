@@ -106,7 +106,7 @@ import jpype
 import os
 
 classpath = os.path.join(os.getcwd(), "all-jar/target/drill-odbc-0.2-SNAPSHOT-jar-with-dependencies.jar")
-jpype.startJVM(jpype.getDefaultJVMPath(), f"-Djava.class.path={classpath}")
+jpype.startJVM(classpath=classpath)
 ```
 
 Before we can connect to the database, we must first start it using `./bin/drill-embedded`.
