@@ -133,6 +133,7 @@ cursor = conn.cursor()
 
 With the newest combination of Drill and `jpype1`, you sadly get the following error when establishing the connection the first.
 On every second call, it passes though without any issues.
+This is tracked for now in [jpype-project/jpype#913](https://github.com/jpype-project/jpype/issues/913).
 
 ```
 Exception: Java Exception
