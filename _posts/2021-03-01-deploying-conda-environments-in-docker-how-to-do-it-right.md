@@ -6,7 +6,7 @@ feature_image: "/images/jonas-smith-aL6tG-j-E4Y-unsplash.jpg"
 
 Deploying conda environments inside a container looks like a straight-forward `conda install`. But with a bit more love for details, you can optimise the process so that the build is faster and the resulting container much smaller.
 
-For optimising conda-environments-in-docker [Jim Crist-Harif's "Smaller Docker images with Conda"](https://jcristharif.com/conda-docker-tips.html) blog post has been the go-to resource for a long time. It is still as valid nowadays as it was back then. Due to changes in the [default content of conda-forge packages](https://github.com/conda-forge/cfep/blob/master/cfep-18.md) and [specific optimization](https://uwekorn.com/2020/09/08/trimming-down-pyarrow-conda-1-of-x.html) of [some particular heavy packages](https://uwekorn.com/2020/10/28/trimming-down-pyarrow-conda-2-of-x.html), it will though yield fewer savings nowadays.
+For optimising conda-environments-in-docker [Jim Crist-Harif's "Smaller Docker images with Conda"](https://jcristharif.com/conda-docker-tips.html) blog post has been the go-to resource for a long time. It is still as valid nowadays as it was back then. Due to changes in the [default content of conda-forge packages](https://github.com/conda-forge/cfep/blob/master/cfep-18.md) and [specific optimisation](https://uwekorn.com/2020/09/08/trimming-down-pyarrow-conda-1-of-x.html) of [some particular heavy packages](https://uwekorn.com/2020/10/28/trimming-down-pyarrow-conda-2-of-x.html), it will though yield fewer savings nowadays.
 
 Over the course of time, we have also developed new techniques that help trim down the sizes of Docker containers even further. In this article, I though want to start at the beginning again and have a look at the most obvious way one would put a conda environment into a Docker container. We will look at all the flaws this approach brings with it and optimise the workflow bit-for-bit until we reach a near-perfect container.
 
@@ -131,7 +131,7 @@ The `environment.yml` we use to build the Docker container is the specification 
 Instead, there two approaches you can take:
 
 1. Build a conda package out of your project. The run(time) dependencies of the conda package is only what you need at prediction time.
-2. Manually specifiy your runtime environment in a separate `predict-environment.yml`.
+2. Manually specify your runtime environment in a separate `predict-environment.yml`.
 
 Personally, I prefer to use option 1 as this enables one to use the package also in various other conda environments. Though I can understand to have a container that directly embeds the code instead of going through the indirection of a package build.
 
@@ -154,7 +154,7 @@ dependencies:
   - uvicorn
 ```
 
-Instead of using that as an input for the container build, we are using [conda-lock](https://github.com/conda-incubator/conda-lock) to render the requirements into locked pinnings for different architectures. This enables us to have a consistent environment to make developer as well as production environments reproducible. Another benefit of using `conda-lock` is that you can generate the lockfile for any platform from any other platform. This means we can develop on macOS and have production systems on Linxu but still generate the lockfiles for all of them on either systems. We can do this using the following commands:
+Instead of using that as an input for the container build, we are using [conda-lock](https://github.com/conda-incubator/conda-lock) to render the requirements into locked pinnings for different architectures. This enables us to have a consistent environment to make developer as well as production environments reproducible. Another benefit of using `conda-lock` is that you can generate the lockfile for any platform from any other platform. This means we can develop on macOS and have production systems on Linux but still generate the lockfiles for all of them on either systems. We can do this using the following commands:
 
 ```
 conda lock -p osx-64 -p osx-arm64 -p linux-64 -p linux-aarch64 -f environment.yml
@@ -199,7 +199,7 @@ CMD [ \
 ]
 ```
 
-With that, we can bring the total container size to 457 MiB. Of the total size, the conda environment is making up 90%. Thus we finally reach rock bottom in what we can optimize in the size of the container and the size of the environment given the current minimal set of dependencies.
+With that, we can bring the total container size to 457 MiB. Of the total size, the conda environment is making up 90%. Thus we finally reach rock bottom in what we can optimise in the size of the container and the size of the environment given the current minimal set of dependencies.
 
 ```
 % docker image ls nyc-taxi-distroless
@@ -216,7 +216,7 @@ af31651e48fe   51 years ago   bazel build ...                                 17
 
 ## Using `--mount=type=cache` instead of `conda clean` with BuildKit
 
-In the above approaches, we have always explicitly removed the conda cache after installing the environment. We also did download the packages fully on each non-cached build. In newer versions of docker you can use its BuildKit backend though which also supports mounting cache volumnes during the build phase. For this, we need to adjust the `mamba create` line to:
+In the above approaches, we have always explicitly removed the conda cache after installing the environment. We also did download the packages fully on each non-cached build. In newer versions of docker you can use its BuildKit backend though which also supports mounting cache volumes during the build phase. For this, we need to adjust the `mamba create` line to:
 
 ```
 RUN --mount=type=cache,target=/opt/conda/pkgs mamba create --copy -p /env --file predict-linux-64.lock
@@ -230,7 +230,7 @@ While we have now trimmed down our container to the minimal overhead and trimmed
 
 For doing this, we run the last single-stage image that was mentioned in the article using `docker run -ti nyc-taxi-mambaforge-predict-only-deps /bin/bash` and use `apt update && apt install -y ncdu` to install `ncdu` as a command line UI to inspect the conda environment in detail. Using `du -sbh nyc-taxi-fare-prediction-deployment-example` we a starting size of 422MiB.
 
-Here we can split the list of tasks into two categories: Deleting files that you can get rid of because you know *exactly* that you don't need them in this case and secondly deleteing files that shouldn't be part of the conda package at all.
+Here we can split the list of tasks into two categories: Deleting files that you can get rid of because you know *exactly* that you don't need them in this case and secondly deleting files that shouldn't be part of the conda package at all.
 
 With the knowledge that we are running a LightGBM model inside a FastAPI app inside of `gunicorn`, we can get rid of the following things and saves storage space:
 
@@ -244,7 +244,7 @@ With the knowledge that we are running a LightGBM model inside a FastAPI app ins
 * Delete the binaries `x86_64-conda-linux-gnu-ld, sqlite3, openssl` from `bin`. These are the largest binaries in `bin` and none of them is used during runtime; saves 5MiB.
 * Delete `share/terminfo` as we don't expect to run a terminal;  saves 2MiB.
 
-In addition, the following removals also brought us a bit of space. These removals are not specific to our usage of the packages but should in general not be part of the main conda package of these artifacts.
+In addition, the following removals also brought us a bit of space. These removals are not specific to our usage of the packages but should in general not be part of the main conda package of these artefacts.
 
 * Delete static libraries with `find -name '*.a' -delete`. These are not needed at runtime, only during compile-time. Bit-by-bit we remove them from the main conda packages as suggested by [CFEP-18](https://github.com/conda-forge/cfep/blob/master/cfep-18.md). This saves 3 MiB.
 * Delete `scipy`'s tests, open issue at [scipy-feedstock#160](https://github.com/conda-forge/scipy-feedstock/issues/160); saves 11MB
@@ -308,9 +308,9 @@ docker buildx build -t nyc-taxi-distroless-buildkit-expert --load -f docker/Dock
 docker run -ti -p 8000:8000 nyc-taxi-distroless-buildkit-expert
 ```
 
-As a follow-up, I'll write a second article that is more in a cheatsheet version that you can refer as a general reminder on how to containerize conda environments.
+As a follow-up, I'll write a second article that is more in a cheatsheet version that you can refer as a general reminder on how to containerise conda environments.
 
-Another follow-up could be a comparision of the container we have built here with the various versions that are offered by `@tiangolo`'s [uvicorn-gunicorn-fastapi-docker](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker). We will definitely see differences in size but it would also be interesting on how they compete in build time and runtime performance.
+Another follow-up could be a comparison of the container we have built here with the various versions that are offered by `@tiangolo`'s [uvicorn-gunicorn-fastapi-docker](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker). We will definitely see differences in size but it would also be interesting on how they compete in build time and runtime performance.
 
 Given that I look at a lot of problems with Data Science / Machine Learning in mind, we could also have a look on how to reduce the runtime dependencies by using runtimes like [ONNX](https://onnx.ai/) or [`treelite`](https://treelite.readthedocs.io/en/latest/).
 
