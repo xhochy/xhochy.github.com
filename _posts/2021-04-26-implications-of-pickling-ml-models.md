@@ -4,7 +4,7 @@ title: The implications of pickling ML models
 feature_image: "/images/aysegul-yahsi-4rPoNLW_3rs-unsplash.jpg"
 ---
 
-When you have trained a machine learning model (pipeline), you will make predictions directly afterwards to assess its quality. When using the model actually for something useful, we also want to make predictions with it at a later point in time. This forces us to store the model to disk and think of a way to serialize it.
+When you have trained a machine learning model (pipeline), you will make predictions directly afterwards to assess its quality. When using the model actually for something useful, we also want to make predictions with it at a later point in time. This forces us to store the model to disk and think of a way to serialise it.
 
 If you have built your pipeline with Python, the most common and probably the easiest way is to store your model using the `pickle` module. In most cases, this is the least effort solution that will bring you the most cost-efficient solution if you are aware of the implications behind the mechanics of `pickle`.
 
@@ -94,7 +94,7 @@ Additionally, you should only use pickle as a persistence format if you trust al
 
 To walk through the different approaches of serialising fitted machine learning models, we are going to pick an example of a simple ML pipeline. One caveat that we build into that pipeline is that we have scikit-learn, pandas and LightGBM as a dependency. This should increase the complexity of the object hierarchy sufficient to reflect real-world issues.
 
-You can see the full example in my [nyc-taxi-fare-prediciton-deployment](https://github.com/xhochy/nyc-taxi-fare-prediction-deployment-example/blob/a37ec165e8f624ed8338067f7b315c663448ef50/src/nyc_taxi_fare/pipeline.py) repository. The basic pipline, accepting a DataFrame as an input, looks as follows (pseudo-Python code!):
+You can see the full example in my [nyc-taxi-fare-prediciton-deployment](https://github.com/xhochy/nyc-taxi-fare-prediction-deployment-example/blob/a37ec165e8f624ed8338067f7b315c663448ef50/src/nyc_taxi_fare/pipeline.py) repository. The basic pipeline, accepting a DataFrame as an input, looks as follows (pseudo-Python code!):
 
 ```python
 pipeline = Pipeline(
@@ -107,7 +107,7 @@ pipeline = Pipeline(
 )
 ```
 
-We train and save this pipleline using the typical `scikit-learn` interface. We use `pickle.HIGHEST_PROTOCOL` in the call to `dump` to let `pickle` use its most efficient form of serialization. This won't be human-readable at all but it will be a smaller dump and faster to load than the older protocol versions.
+We train and save this pipeline using the typical `scikit-learn` interface. We use `pickle.HIGHEST_PROTOCOL` in the call to `dump` to let `pickle` use its most efficient form of serialisation. This won't be human-readable at all but it will be a smaller dump and faster to load than the older protocol versions.
 
 ```python
 df = pd.read_parquet(…)[relevant_coluns]
@@ -130,11 +130,11 @@ predictions = pipeline.predict(df)
 
 In the example case here, we have trained a model on a single month of New York Taxi trip data for the prediction of fare prices based on time and distance. The resulting `model.pkl` file was 318K in size. Pickle files are written in an efficient binary format but aren't compressed at all. Using `zstd -19 model.pkl -o model.pkl.zst`, we can compress it down to 82K (took 0,18s).
 
-## Alternative 1: Roll your own serialization protocol
+## Alternative 1: Roll your own serialisation protocol
 
-Instead of relying on `pickle`, you could instead roll your own serialization protocol. This means that you would have to write serialization code for all the steps in your pipeline and store them as JSON, Protobuf or a similar generic serialization protocol. As long as your pipeline structure is simple enough, this will allow you to serialise your models without the need to explicitly track the versions of your packages. You still need to take care that future versions of your code load the old models correctly though. This is much more complicated than it sounds and in most cases, you will only realise this when you have written out several versions of your serialisation specification.
+Instead of relying on `pickle`, you could instead roll your own serialisation protocol. This means that you would have to write serialisation code for all the steps in your pipeline and store them as JSON, Protobuf or a similar generic serialisation protocol. As long as your pipeline structure is simple enough, this will allow you to serialise your models without the need to explicitly track the versions of your packages. You still need to take care that future versions of your code load the old models correctly though. This is much more complicated than it sounds and in most cases, you will only realise this when you have written out several versions of your serialisation specification.
 
-If you plan to go the route of writing your own serialization protocol, you can take insipration from [Camel](https://eev.ee/release/2015/10/15/dont-use-pickle-use-camel/), a library that allows you to do exactly that into YAML files in a safe fashion. For machine learning models you should though keep in mind that you will quite often save complex features matrices and thus a human-readable format like YAML is most likely to inefficient for that.
+If you plan to go the route of writing your own serialisation protocol, you can take inspiration from [Camel](https://eev.ee/release/2015/10/15/dont-use-pickle-use-camel/), a library that allows you to do exactly that into YAML files in a safe fashion. For machine learning models you should though keep in mind that you will quite often save complex features matrices and thus a human-readable format like YAML is most likely to inefficient for that.
 
 To illustrate how much work this is and which difficulties can occur, we are using the above example pipeline and implement serialisation for it using `camel`. For this, we need to implement loaders that transform the specific Python objects into standard YAML-serialisable objects.
 
@@ -157,7 +157,7 @@ def load_pipeline(pipeline, version):
 
 The next class we need to implement is the `ColumnTransformer`. While at first sight, we would have expected that we also only need the arguments that were passed into the original constructor, we actually need to serialise the full internal state. This is due to the fact that the transformer observes the data that passes through it during fit and checks against that during `predict`. While the code below doesn't look that lengthy, it actually doesn't provide much benefit over a `pickle`. It serialises the internal structure of the transformer and deserialises the exact same structure again during load. Thus this code implicitly introduces the constraint that we have the same `scikit-learn` version in both cases. Due to the limited public API of the `ColumnTransformer`, it is nearly impossible to get the state of the `ColumnTransformer` that doesn't make an assumption of its internal implementation.
 
-Another point during its serialisation is that one of its attributes is a `pandas.Index` object. While we could invest in writing serialisation code that handles all kindes of instantiations of this class, we limit ourselves here to the assumption that it is a string-list based index, making the dump just a single line. This limitation is encoded in the version number.
+Another point during its serialisation is that one of its attributes is a `pandas.Index` object. While we could invest in writing serialisation code that handles all kinds of instantiations of this class, we limit ourselves here to the assumption that it is a string-list based index, making the dump just a single line. This limitation is encoded in the version number.
 
 
 ```python
@@ -253,7 +253,7 @@ preds = restored_pipeline.predict(df)
 
 In conclusion, using `camel` as a way to serialise the pipeline looked promising at first sight as it allowed you to easily define simple and versioned Python functions for serialisation. Sadly, in a lot of cases it was not possible to write serialisation code that is independent of the used library versions. The public API provided by `scikit-learn` as well as `LightGBM` didn't cover enough of the internals that you could write version-independent code. 
 
-One approach that you could use would be to write library-version specific serialisation code for these pipeline components but implement the predict part of them fully without them. Dependending on the exposure of the internal state of your pipeline steps, this is either simpler or harder than the approach taken here. In _Alternative 3_, we are actually doing this approach by taking a `scikit-learn` based pipeline and do the prediction via ONNX with no dependency on `scikit-learn` or our custom code.
+One approach that you could use would be to write library-version specific serialisation code for these pipeline components but implement the predict part of them fully without them. Depending on the exposure of the internal state of your pipeline steps, this is either simpler or harder than the approach taken here. In _Alternative 3_, we are actually doing this approach by taking a `scikit-learn` based pipeline and do the prediction via ONNX with no dependency on `scikit-learn` or our custom code.
 
 ## Alternative 2: Tensorflow / Keras
 
@@ -261,7 +261,7 @@ Tensorflow and Keras are two popular machine learning libraries that work togeth
 
 Historically, they were using HDF5 files to store the configuration and the weights of the neural networks but were limited to the built-in types. If you had custom layers or subclassed any components, you needed to do an extra step to [persist your custom objects](https://www.tensorflow.org/tutorials/keras/save_and_load#saving_custom_objects).
 
-Nowadays Tensorflow provides its custom serialization protocol named [`SavedModel`](https://www.tensorflow.org/guide/saved_model). This allows one to saved arbitrary complex and custom Tensorflow execution graphs. While this supports the flexibility of customisation in contrast to the previous approach, it is interesting to note that it suffers a similar problem with the recreation as `pickle` does. As outlined in the section ["Saving a custom model"](https://www.tensorflow.org/guide/saved_model#saving_a_custom_model), no Python code or even attributes are stored. Instead `SavedModel` relies on the cache of traced `tensorflow.function` calls. In contrast to `pickle` this is though a bit better as this allows much more complex excution graphs to be restored without having the full Python code that was used for training available.
+Nowadays Tensorflow provides its custom serialisation protocol named [`SavedModel`](https://www.tensorflow.org/guide/saved_model). This allows one to saved arbitrary complex and custom Tensorflow execution graphs. While this supports the flexibility of customisation in contrast to the previous approach, it is interesting to note that it suffers a similar problem with the recreation as `pickle` does. As outlined in the section ["Saving a custom model"](https://www.tensorflow.org/guide/saved_model#saving_a_custom_model), no Python code or even attributes are stored. Instead `SavedModel` relies on the cache of traced `tensorflow.function` calls. In contrast to `pickle` this is though a bit better as this allows much more complex execution graphs to be restored without having the full Python code that was used for training available.
 
 *As I personally have not been using Tensorflow much and the documentation around BoostedTrees in Tensorflow was quite sparse, I did skip applying this to my example pipeline. If a reader of this article though has the sufficient knowledge to replicate it in Tensorflow, I would be really grateful for a code snippet.*
 
@@ -318,7 +318,7 @@ pred_onnx = sess.run([label_name], {input_name: features_as_array.astype(np.floa
 
 In the above code sample, we train the model using the normal `sklearn` API but then use the `skl2onnx` to convert the model to ONNX as a representation. In the following line we then use the `onnxruntime` package to load that model again. The `onnxruntime` does only pull the information about the pipeline from the `gbr.onnx` file and doesn't reference the `sklearn` pipeline at all. 
 
-Note that as `onnxruntime` doesn't support `pandas.DataFrame` as an input, we fallback here to `numpy.ndarray`. With a bit more knowledge of ONNX, you should be able though to pass in DataFrames as the specification support heterogenously typed inputs.
+Note that as `onnxruntime` doesn't support `pandas.DataFrame` as an input, we fallback here to `numpy.ndarray`. With a bit more knowledge of ONNX, you should be able though to pass in DataFrames as the specification support heterogeneously typed inputs.
 
 With the `onnxruntime` itself being independent of Python, we should be able to get rid of some of the overhead that is introduced by using Python as a high-level glue and a bit by having in some steps intermediate results in a NumPy array in main memory where it could also be passed via a CPU register.
 
@@ -567,11 +567,11 @@ first_line = x_for_matrix[0, :].reshape(1, -1)
 # 73 µs ± 1.81 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 ```
 
-In the batch case where we pass a full month of data, we see a 36% speedup. This is already remarkable given that LightGBM is also quite optimized and uses multiple CPUs for its prediction computation. For the single row case though, we see a 10x speedup as in the example above.
+In the batch case where we pass a full month of data, we see a 36% speedup. This is already remarkable given that LightGBM is also quite optimised and uses multiple CPUs for its prediction computation. For the single row case though, we see a 10x speedup as in the example above.
 
 ## Conclusion
 
-Overall, we see that `pickle` is awesome as it stores arbitrary Python object hierachies. You can use this as your default for storing models. But be careful to use the exact same package versions when restoring the pickle.
+Overall, we see that `pickle` is awesome as it stores arbitrary Python object hierarchies. You can use this as your default for storing models. But be careful to use the exact same package versions when restoring the pickle.
 
 In the case that you are a Tensorflow user and can represent your whole pipeline with it, you should use its `SavedModel` approach. This will not introduce a new technology into your stack but it will remove the dependency on your custom code during the deployment.
 
