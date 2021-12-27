@@ -38,6 +38,7 @@ defaults:
     scope:
       path: ""
     values:
+      layout: page
       image: "https://avatars2.githubusercontent.com/u/70274?s=460&v=4" # Default image for sharing
 
 navigation_header:

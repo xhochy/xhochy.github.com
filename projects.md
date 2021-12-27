@@ -1,4 +1,5 @@
 ---
+layout: page
 feature_image: "https://picsum.photos/2560/600?image=1026&blur"
 feature_text: |
   ## Projects
