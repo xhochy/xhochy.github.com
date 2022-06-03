@@ -308,7 +308,7 @@ onnx = convert_sklearn(gbr, initial_types=initial_type)
 
 # Load the ONNX model to compute the predictions with onnxruntime
 import onnxruntime as rt
-import numpy
+import numpy as np
 sess = rt.InferenceSession(str(model_dir / "gbr.onnx"))
 input_name = sess.get_inputs()[0].name
 label_name = sess.get_outputs()[0].name
