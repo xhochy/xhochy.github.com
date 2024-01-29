@@ -5,6 +5,10 @@ feature_text: |
   Presentations and Tutorials I have given at various public events.
 ---
 
+### 2023
+
+DKFZ Data Science Seminar – Best practices for parallelizing data pipelines \| [YouTube](https://www.youtube.com/watch?v=BZD5SKpC8rg)
+
 ### 2020
 
 Techtiefen #31 - Effiziente Datenverarbeitung \| [Podcast](https://techtiefen.de/31-effiziente-datenverarbeitung/)
