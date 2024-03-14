@@ -1,7 +1,7 @@
 name: xhochy.github.com
 channels:
   - conda-forge
-  - defaults
+  - nodefaults
 dependencies:
   - rb-jekyll<4
   - rb-nokogiri
