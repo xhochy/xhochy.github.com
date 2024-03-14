@@ -3,6 +3,8 @@ layout: post
 title: >
   "Killed: 9" – Getting codesigning to work with conda-pack on Apple Silicon (osx-arm64)
 feature_image: "/images/priscilla-du-preez-4hifhaM4pVg-unsplash.jpg"
+redirect_from:
+ - /2023/03/11/getting-codesigning-to-work-on-apple-silicon.html
 ---
 
 If your error message is simply "Killed: 9", you know you are in for a long debug session.

@@ -2,6 +2,7 @@ theme: alembic-jekyll-theme
 
 plugins:
   - jekyll-paginate
+  - jekyll-redirect-from
 
 title: Uwe's Blog
 description: >
