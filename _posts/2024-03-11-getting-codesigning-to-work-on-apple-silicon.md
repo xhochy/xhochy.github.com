@@ -13,7 +13,7 @@ Thus, this has been a problem that could only be fixed by having good insight an
 
 One of these programs that failed with the above-mentioned error message was `conda-pack`.
 `conda-pack` is a tool to package `conda` environments into an archive that can be extracted later on at an arbitrary location.
-Through a specialised activation script, the executable in the packed environment can then ??? from this arbitrary location.
+Through a specialised activation script, the executable in the packed environment can then be run from this arbitrary location.
 
 While it has been working quite smoothly for Windows, Linux, and Intel-based macOS systems, it sadly failed with the very brief error message on all Apple Silicon-based macOS installations:
 
