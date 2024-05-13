@@ -15,7 +15,7 @@ twitter_username: "xhochy"
 github_username:  "xhochy"
 feed_icon: rss
 paginate_path: "/page/:num/"
-paginate: 5
+paginate: 15
 highlighter: rouge
 
 timezone: Europe/London # Timezone for blog posts and alike
