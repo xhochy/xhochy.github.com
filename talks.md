@@ -5,6 +5,16 @@ feature_text: |
   Presentations and Tutorials I have given at various public events.
 ---
 
+### 2024
+
+[PyData Sofia May 2024 - Introduction to Apache Arrow](https://www.meetup.com/pydata-sofia/events/301131245/) \|
+[Slideshare](https://www.slideshare.net/slideshow/pydata-sofia-may-2024-intro-to-apache-arrow/270206762) \|
+[Speakerdeck](https://speakerdeck.com/xhochy/pydata-sofia-may-2024-intro-to-apache-arrow)
+
+[PyConDE & PyData Berlin 2024 – Going beyond Parquet's default settings](https://2024.pycon.de/program/SQUNWS/) \|
+[Slideshare](https://www.slideshare.net/slideshow/going-beyond-apache-parquets-default-settings/267494167) \|
+[Speakerdeck](https://speakerdeck.com/xhochy/going-beyond-apache-parquets-default-settings) \| Also held at PyData Südwest in Mannheim
+
 ### 2023
 
 DKFZ Data Science Seminar – Best practices for parallelizing data pipelines \| [YouTube](https://www.youtube.com/watch?v=BZD5SKpC8rg)
