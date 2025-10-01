@@ -5,6 +5,12 @@ feature_text: |
   Presentations and Tutorials I have given at various public events.
 ---
 
+### 2025
+
+PyData Paris September 2025 – Navigating the security compliance maze of an ML service \|
+[Slideshare](https://de.slideshare.net/slideshow/navigating-the-security-compliance-maze-of-an-ml-service-pydata-paris-2025-pdf/283535768) \|
+[Speakerdeck](https://speakerdeck.com/xhochy/navigating-the-security-compliance-maze-of-an-ml-service)
+
 ### 2024
 
 [PyData Sofia May 2024 - Introduction to Apache Arrow](https://www.meetup.com/pydata-sofia/events/301131245/) \|
