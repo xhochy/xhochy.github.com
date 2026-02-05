@@ -22,7 +22,7 @@ Before writing the post, I had to decide whether I should do this in the first p
 I wanted to include some context on the current state, discuss open questions, outline what we are going to do, and include a call to action at the end.
 This will turn into a lengthy post, and, from experience, the longer a post is, the less likely people are to read it in full.
 Still, this marks a significant shift in how we (will) work, and I was encouraged by several people to address this and ensure we move at the same pace as the leaders in the field.
-In addition to the length, the content can simply lead to some backlash.i
+In addition to the length, the content can simply lead to some backlash.
 We are in an experimental phase and have not found the right way to do things.
 This means that it is pretty easy to be criticised for pushing immature practices.
 In the end, this is something I considered a necessary evil, as I want to push people to look into agentic coding that they are not doing as actively as I wish.

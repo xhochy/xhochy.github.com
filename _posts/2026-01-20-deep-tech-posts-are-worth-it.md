@@ -58,7 +58,7 @@ In his article, he actually mentioned that he changed the line that segfaulted f
 If this had been hidden in a GitHub commit, I would not have expected Perplexity to pick it up.
 But since Lucas has written the blog post, I did get a very crucial hint (or possibly the solution) at what is breaking here.
 
-This enabled me to resolve the issue in [cctools-and-ld64-feedstock#103](cctools-and-ld64-feedstock/pull/103) by adding a `nullptr` check to the existing patch. Instead of several hours of debugging and understanding a complex codebase, this could be fixed in less than 15 minutes.
+This enabled me to resolve the issue in [cctools-and-ld64-feedstock#103](https://github.com/conda-forge/cctools-and-ld64-feedstock/pull/103) by adding a `nullptr` check to the existing patch. Instead of several hours of debugging and understanding a complex codebase, this could be fixed in less than 15 minutes.
 
 ## Conclusion
 
